@@ -79,7 +79,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
  */
 
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+    enableHermes: true,   // <- add this juan: react-native-reanimated@2.8.0
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -287,6 +287,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"// <- add this juan: react-native-vector-icons@9.1.0
+
+    implementation project(':react-native-linear-gradient') // <- add this juan: react-native-linear-gradient@2.5.6
 }
 
 if (isNewArchitectureEnabled()) {

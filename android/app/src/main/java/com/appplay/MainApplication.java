@@ -13,6 +13,11 @@ import com.appplay.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+//import com.facebook.react.bridge.JSIModulePackage; // <- add this juan: react-native-reanimated@2.8.0
+//import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <- add this juan: react-native-reanimated@2.8.0
+import com.BV.LinearGradient.LinearGradientPackage; // <- add this juan: react-native-linear-gradient@2.5.6
+import org.wonday.orientation.OrientationActivityLifecycle; // <- add this juan: react-native-orientation-locker@1.5.0
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -35,6 +40,14 @@ public class MainApplication extends Application implements ReactApplication {
         protected String getJSMainModuleName() {
           return "index";
         }
+        /*
+        //INI <- add this juan: react-native-reanimated@2.8.0
+        @Override
+        protected JSIModulePackage getJSIModulePackage() {
+          return new ReanimatedJSIModulePackage(); // <- add
+        }
+        //FIN <- add this juan: react-native-reanimated@2.8.0
+        */
       };
 
   private final ReactNativeHost mNewArchitectureNativeHost =
@@ -56,6 +69,8 @@ public class MainApplication extends Application implements ReactApplication {
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+
+    registerActivityLifecycleCallbacks(OrientationActivityLifecycle.getInstance()); // <- add this juan: react-native-orientation-locker@1.5.0
   }
 
   /**

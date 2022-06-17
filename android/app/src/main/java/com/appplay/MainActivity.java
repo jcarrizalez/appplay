@@ -3,8 +3,23 @@ package com.appplay;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import android.os.Bundle; // <- add this juan: react-native-screens@3.13.1
+
+import android.content.Intent; // <- add this juan: react-native-orientation-locker@1.5.0
+import android.content.res.Configuration; // <- add this juan: react-native-orientation-locker@1.5.0
+
 
 public class MainActivity extends ReactActivity {
+
+  //INI <- add this juan: react-native-orientation-locker@1.5.0
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    Intent intent = new Intent("onConfigurationChanged");
+    intent.putExtra("newConfig", newConfig);
+    this.sendBroadcast(intent);
+  }
+  //FIN <- add this juan: react-native-orientation-locker@1.5.0
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
@@ -37,4 +52,12 @@ public class MainActivity extends ReactActivity {
       return reactRootView;
     }
   }
+
+  //INI <- add this juan: react-native-screens@3.13.1
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
+  }
+  //FIN <- add this juan: react-native-screens@3.13.1
+
 }

@@ -1,3 +1,4 @@
+#import "Orientation.h" // <- add this juan: react-native-orientation-locker@1.5.0
 #import "AppDelegate.h"
 
 #import <React/RCTBridge.h>
@@ -105,4 +106,9 @@
 
 #endif
 
+#//INI <- add this juan: react-native-orientation-locker@1.5.0
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  return [Orientation getOrientation];
+}
+#//FIN <- add this juan: react-native-orientation-locker@1.5.0
 @end
