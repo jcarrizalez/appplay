@@ -3,13 +3,13 @@ import mapperCarouselBlock from '~/mappers/carousel_block'
 import mapperGenreBlock from '~/mappers/genre_block'
 import mapperChannelBlock from '~/mappers/channel_block'
 
-export default async (slug, params) =>
+export default async (slug_, params) =>
 {
 	const loading = false
 
-	if(!slug) return
+	if(!slug_) return
 
-	let response = await api.get(loading, `/marketing/block/group/${slug}`, {
+	let response = await api.get(loading, `/marketing/block/group/${slug_}`, {
 		page: params.page || 1, 
 		count: params.count || 70,
 		resolve: params.resolve || 20,
@@ -36,7 +36,7 @@ export default async (slug, params) =>
 			default:
 				return
 		}
-	}).filter(block => block!==undefined)
+	}).filter(block => block !== undefined)
 
 	return {
 		slug, 
