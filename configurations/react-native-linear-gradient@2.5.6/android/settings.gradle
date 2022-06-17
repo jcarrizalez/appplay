@@ -1,0 +1,13 @@
+rootProject.name = 'Qubit'
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'
+
+//INI <- add this juan: react-native-google-cast@3.4.1
+include ':react-native-google-cast'
+project(':react-native-google-cast').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-google-cast/android')
+//FIN <- add this juan: react-native-google-cast@3.4.1
+
+//INI <- add this juan: react-native-linear-gradient@2.5.6
+include ':react-native-linear-gradient'
+project(':react-native-linear-gradient').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-linear-gradient/android')
+//FIN <- add this juan: react-native-linear-gradient@2.5.6

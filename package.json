@@ -13,7 +13,7 @@
     "metro": "mkdir android/app/src/main/assets; watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && yarn start --reset-cache",
     "release": "cd android && ./gradlew assembleRelease && cd ..",
     "apk-install": "adb install -r ./android/app/build/outputs/apk/release/app-release.apk",
-    "postinstall": "  sed -i 's/2.13.2/2.13.3/' ./node_modules/react-native-video/android-exoplayer/build.gradle"
+    "postinstall": " sed -i 's/2.13.2/2.13.3/' ./node_modules/react-native-video/android-exoplayer/build.gradle"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.16.1",

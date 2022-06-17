@@ -1,0 +1,23 @@
+export Icon from './Icon'
+export Grid from './Grid'
+export Block from './Block'
+export Image from './Image'
+//export Alert from './Alert'
+export Sinup from './Sinup'
+export Buttom from './Buttom'
+export Header from './Header'
+export Footer from './Footer'
+export Loading from './Loading'
+export LoadInit from './LoadInit'
+export Publicity from './Publicity'
+export GoogleCast from './GoogleCast'
+export DrawerMenu from './DrawerMenu'
+export ContentInfo from './ContentInfo'
+export SliderIntro from './SliderIntro'
+export MediaPlayer from './MediaPlayer'
+export DrawerPlayer from './DrawerPlayer'
+export Notifications from './Notifications'
+
+import {withTheme as styled} from 'styled-components/native'
+
+export default styled

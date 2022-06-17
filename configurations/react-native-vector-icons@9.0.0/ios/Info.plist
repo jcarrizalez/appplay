@@ -1,0 +1,5 @@
+add esto:
+<key>UIAppFonts</key>
+<array>
+	<string>MaterialIcons.ttf</string>
+</array>
