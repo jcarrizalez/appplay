@@ -14,7 +14,8 @@
     "metro": "mkdir android/app/src/main/assets; watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && yarn start --reset-cache",
     "release": "cd android && ./gradlew assembleRelease && cd ..",
     "apk-install": "adb install -r ./android/app/build/outputs/apk/release/app-release.apk",
-    "postinstall": "sed -i 's/2.13.2/2.13.3/' ./node_modules/react-native-video/android-exoplayer/build.gradle"
+    "react-native-pulse": "1.0.7",
+    "postinstall": "#sed -i 's/2.13.2/2.13.3/' ./node_modules/react-native-video/android-exoplayer/build.gradle"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.16.1",
@@ -31,6 +32,7 @@
     "react-native-linear-gradient": "2.5.6",
     "react-native-orientation-locker": "1.5.0",
     "react-native-pager-view": "5.4.11",
+    "react-native-pulse": "1.0.7",
     "react-native-raw-bottom-sheet": "2.2.0",
     "react-native-reanimated": "2.8.0",
     "react-native-safe-area-context": "4.1.0",
