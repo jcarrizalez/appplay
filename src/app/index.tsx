@@ -52,14 +52,14 @@ function Index()
     <Theme>
       <Notifications>
         <App.Container>
-          {(load !== true)
-            ? <LoadInit onPress={()=>fn.onLoad(setLoad, setIntro)} load={load}/>
-            : (intro === true)
-              ? <SliderIntro onAction={value=>fn.onAction(value, setIntro)}/>
+          {load !== true
+            ? <LoadInit onPress={()=>fn.onLoad(setLoad, setIntro)} load={load} />
+            : intro === true
+              ? <SliderIntro onAction={value=>fn.onAction(value, setIntro)} />
               : <>
                   <GoogleCast /> 
                   <App.SafeAreaProvider>
-                      <Router/>
+                    <Router/>
                   </App.SafeAreaProvider>
                 </>
           }

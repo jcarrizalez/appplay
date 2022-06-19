@@ -7,12 +7,21 @@ function LoadInit({theme, load, onPress})
 {
   return (
     <Container>
-      <Pulse color={theme.color.lightGrey} numPulses={3} diameter={600} speed={10} duration={2000} pulseStyle={{position:'absolute', marginLeft:-5, marginTop:-51}}/>
-    {/*
-      */}
+      {load === null
+        ? <Pulse color={theme.color.lightGrey} numPulses={3} diameter={700} speed={10} duration={2000} pulseStyle={{position:'absolute', marginLeft:-5, marginTop:-60}}/>
+        : null
+      }
       <Logo source={theme.logo} />
-      {(load===null)?<Indicator/>:null}
-      <Text>{(load===null)?'Cargando...' : 'Error Auth'}</Text>
+      {load === null
+        ? <Indicator/>
+        : null
+      }
+      <Text>{
+        load === null
+          ? 'Cargando...' 
+          : 'Error Auth'
+        }
+      </Text>
       <SendButton onPress={onPress} load={load}>
         <Wave>
           <Text load={load}>volver a intentar</Text>
