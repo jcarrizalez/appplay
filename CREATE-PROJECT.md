@@ -377,3 +377,26 @@ mv ios/AppPlayTests/QubitTests.m ios/AppPlayTests/AppPlayTests.m;
 
 
 
+
+
+add para build en /opt/AppPlay/node_modules/react-native/react.gradle
+if (enableHermes) {
+    doLast {
+	    def moveFunc = { resSuffix ->
+	      File originalDir = file("$buildDir/generated/res/react/release/drawable-${resSuffix}");
+	      if (originalDir.exists()) {
+	        File destDir = file("$buildDir/../src/main/res/drawable-${resSuffix}");
+	        ant.move(file: originalDir, tofile: destDir);
+	      }
+	    }
+	    moveFunc.curry("ldpi").call()
+	    moveFunc.curry("mdpi").call()
+	    moveFunc.curry("hdpi").call()
+	    moveFunc.curry("xhdpi").call()
+	    moveFunc.curry("xxhdpi").call()
+	    moveFunc.curry("xxxhdpi").call()
+
+
+brew install bundletool
+bundletool build-apks --bundle=./android/app/build/outputs/bundle/release/app-release.aab --output=./android/app/build/outputs/bundle/release/app-release.apks
+bundletool install-apks --apks=./android/app/build/outputs/bundle/release/app-release.apks
