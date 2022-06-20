@@ -61,11 +61,13 @@ buck-out/
 
 # Ruby / CocoaPods
 /ios/Pods/
+/ios/AppPlay/Images.xcassets/
+/ios/AppPlay/Images.xcassets/
 /vendor/bundle/
 
+/android/app/release/
+/android/app/src/main/assets/
+/android/app/src/main/res/mipmap-xxxhdpi/
 
 
 
-android/app/release/
-android/app/src/main/assets/
-android/app/src/main/res/

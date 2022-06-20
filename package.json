@@ -12,10 +12,12 @@
     "pod": "cd ios;pod install;cd ..",
     "build-clean": "cd ios;xcodebuild clean; cd ../android; ./gradlew clean;cd ..",
     "metro": "mkdir android/app/src/main/assets; watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && yarn start --reset-cache",
-    "release": "cd android && ./gradlew assembleRelease && cd ..",
+    "apk-release": "cd android && ./gradlew assembleRelease && cd ..",
     "apk-install": "adb install -r ./android/app/build/outputs/apk/release/app-release.apk",
     "react-native-pulse": "1.0.7",
-    "postinstall": "#sed -i 's/2.13.2/2.13.3/' ./node_modules/react-native-video/android-exoplayer/build.gradle"
+    "postinstall": "#sed -i 's/2.13.2/2.13.3/' ./node_modules/react-native-video/android-exoplayer/build.gradle",
+    "icon-android": "yo rn-toolbox:assets --icon ./src/companies/qubit/icon.png --android",
+    "icon-ios":"yo rn-toolbox:assets --icon ./src/companies/qubit/icon.png --ios"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.16.1",
