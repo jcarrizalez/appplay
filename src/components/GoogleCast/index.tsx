@@ -5,20 +5,20 @@ import {Sheet} from './styles'
 import View from './View'
 import fn from '../ContentInfo/functions'
 import {withTheme} from 'styled-components/native'
-/*
+
 import GoogleCast, { 
   CastButton, useCastState, useDevices, 
   useCastChannel, useRemoteMediaClient, 
   useMediaStatus, useStreamPosition,
   CastContext, useCastSession
 } from 'react-native-google-cast'
-*/
+/*
 function Client({theme})
 {
   return null
 }
+*/
 
-/*
 function Client({theme})
 {
   const [client, setClient] = useState(useRemoteMediaClient())
@@ -288,7 +288,6 @@ function GoogleCastView({theme, onSession, onClient, onShowCastDialog})
     </Sheet.Container>
   )
 }
-*/
 
 export default withTheme(Client)
 

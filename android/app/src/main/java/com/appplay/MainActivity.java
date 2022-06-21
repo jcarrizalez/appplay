@@ -8,6 +8,9 @@ import android.os.Bundle; // <- add this juan: react-native-screens@3.13.1
 import android.content.Intent; // <- add this juan: react-native-orientation-locker@1.5.0
 import android.content.res.Configuration; // <- add this juan: react-native-orientation-locker@1.5.0
 
+//import android.os.Bundle; // <- add this juan: react-native-google-cast@4.2.4
+import androidx.annotation.Nullable; // <- add this juan: react-native-google-cast@4.2.4
+import com.google.android.gms.cast.framework.CastContext; // <- add this juan: react-native-google-cast@4.2.4
 
 public class MainActivity extends ReactActivity {
 
@@ -54,10 +57,16 @@ public class MainActivity extends ReactActivity {
   }
 
   //INI <- add this juan: react-native-screens@3.13.1
+  //INI <- add this juan: react-native-google-cast@4.2.4
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(null);
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    //super.onCreate(null);
+    super.onCreate(savedInstanceState);
+
+    // lazy load Google Cast context
+    CastContext.getSharedInstance(this);
   }
   //FIN <- add this juan: react-native-screens@3.13.1
+  //FIN <- add this juan: react-native-google-cast@4.2.4
 
 }

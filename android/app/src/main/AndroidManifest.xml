@@ -22,5 +22,14 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+      <!--
+        //INI <- add this juan: react-native-google-cast@4.2.4
+      -->
+      <meta-data
+        android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
+        android:value="com.reactnative.googlecast.GoogleCastOptionsProvider" />
+      <!--
+        //FIN <- add this juan: react-native-google-cast@4.2.4
+      -->
     </application>
 </manifest>

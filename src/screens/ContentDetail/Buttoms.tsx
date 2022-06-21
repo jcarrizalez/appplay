@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import View from './View'
 import {redux, crtl, navigator} from 'services'
 import {CONTENT_PLAY, MY_LIST} from '~/endpoints'
-//import {useCastState} from 'react-native-google-cast'
+import {useCastState} from 'react-native-google-cast'
 
 function Buttoms({username,data:{uuid, title, watchlater, description2}})
 {
-  //const castState = useCastState() === `connected`
-  const castState = false
+  const castState = useCastState() === `connected`
+  //const castState = false
 
   const [load, setMounted] = useState(crtl.onMounted(`content_buttoms`))
   
