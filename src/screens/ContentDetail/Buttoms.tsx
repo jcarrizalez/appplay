@@ -39,10 +39,12 @@ function Buttoms({username,data:{uuid, title, watchlater, description2}})
     //load.start()
     let response = await CONTENT_PLAY(uuid, title, iscast)
     //load.end()
-
-    if(response && load.isMounted()) iscast 
-      ? redux.push('google_cast', response)
-      : navigator('Player', response)
+    if(response && load.isMounted()){
+      redux.push('google_cast', response)
+    }
+    else{
+      navigator('Player', response)
+    }
 
   },[])
 

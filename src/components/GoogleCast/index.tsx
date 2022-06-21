@@ -231,6 +231,8 @@ function GoogleCastView({theme, onSession, onClient, onShowCastDialog})
 
         setData(response)
 
+        console.log(response.loadMedia)
+
         setTimeout(() => onClient(`load`, response.loadMedia), 1000)
       }
        ref.current.open()
