@@ -87,13 +87,13 @@ function Player({ navigation, route, theme })
     //if(init) ref.current.seek(725)
   }, [init]);
 
-
+  /*
   useEffect(() =>
   {
     setState({...s, paused:isDrawerOpen})
   
   }, [isDrawerOpen]);
-
+*/
   useEffect(() =>
   {
     CONFIG.isLocked = Orientation.isLocked()

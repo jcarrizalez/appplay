@@ -119,6 +119,14 @@ export const Sheet = {
     width:194px;
     border-radius: 2px;
   `,
+  TouchImage: styled.TouchableOpacity.attrs({
+    activeOpacity:0.7
+  })`
+    position: absolute;
+    height: 129px;
+    width:194px;
+    border-radius: 2px;
+  `,
   HeaderLoading: styled(ActivityIndicator).attrs({
     size:'large',
     color: p=>p.theme.color.orange,

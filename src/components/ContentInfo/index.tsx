@@ -45,7 +45,9 @@ function ContentInfo()
       <Sheet.View>
         <Sheet.HeaderLine/>
         <Sheet.HeaderLeft>
-          <Sheet.HeaderImage data={data} onLoadEnd={onImageLoad}/>
+          <Sheet.TouchImage onPress={onContentDetail}>
+            <Sheet.HeaderImage data={data} onLoadEnd={onImageLoad}/>
+          </Sheet.TouchImage>
           {data?.loadimg
             ? null
             : <Sheet.HeaderLoading/>
