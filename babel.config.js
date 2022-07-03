@@ -15,8 +15,8 @@ module.exports = {
             "rootPathPrefix": "screens"
           },
           {
-            "rootPathSuffix": "./src/services",
-            "rootPathPrefix": "services"
+            "rootPathSuffix": "./src/lib",
+            "rootPathPrefix": "lib"
           },
           {
             "rootPathSuffix": "./src/config",
@@ -45,6 +45,18 @@ module.exports = {
           {
             "rootPathSuffix": "./configurations",
             "rootPathPrefix": "!/"
+          },
+          {
+            "rootPathSuffix": "./src/endpoints",
+            "rootPathPrefix": "endpoints"
+          },
+          {
+            "rootPathSuffix": "./src/services",
+            "rootPathPrefix": "services"
+          },
+          {
+            "rootPathSuffix": "./src/components",
+            "rootPathPrefix": "components"
           },
         ]
       }

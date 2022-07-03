@@ -1,4 +1,4 @@
-import {logger} from 'services' 
+import {logger} from 'lib' 
 import mapperPerson from '~/mappers/person'
 
 export default (type, data) => {

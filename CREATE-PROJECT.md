@@ -378,25 +378,129 @@ mv ios/AppPlayTests/QubitTests.m ios/AppPlayTests/AppPlayTests.m;
 
 
 
-
 add para build en /opt/AppPlay/node_modules/react-native/react.gradle
 if (enableHermes) {
     doLast {
-	    def moveFunc = { resSuffix ->
-	      File originalDir = file("$buildDir/generated/res/react/release/drawable-${resSuffix}");
-	      if (originalDir.exists()) {
-	        File destDir = file("$buildDir/../src/main/res/drawable-${resSuffix}");
-	        ant.move(file: originalDir, tofile: destDir);
-	      }
-	    }
-	    moveFunc.curry("ldpi").call()
-	    moveFunc.curry("mdpi").call()
-	    moveFunc.curry("hdpi").call()
-	    moveFunc.curry("xhdpi").call()
-	    moveFunc.curry("xxhdpi").call()
-	    moveFunc.curry("xxxhdpi").call()
+      def hermesFlags = hermesFlagsForVariant(variant)
+      def hbcTempFile = file("${jsBundleFile}.hbc")
+      def moveFunc = { resSuffix ->
+        File originalDir = file("$buildDir/generated/res/react/release/drawable-${resSuffix}");
+        if (originalDir.exists()) {
+          File destDir = file("$buildDir/../src/main/res/drawable-${resSuffix}");
+          ant.move(file: originalDir, tofile: destDir);
+        }
+      }
+      moveFunc.curry("ldpi").call()
+      moveFunc.curry("mdpi").call()
+      moveFunc.curry("hdpi").call()
+      moveFunc.curry("xhdpi").call()
+      moveFunc.curry("xxhdpi").call()
+      moveFunc.curry("xxxhdpi").call()
+
+
 
 
 brew install bundletool
 bundletool build-apks --bundle=./android/app/build/outputs/bundle/release/app-release.aab --output=./android/app/build/outputs/bundle/release/app-release.apks
 bundletool install-apks --apks=./android/app/build/outputs/bundle/release/app-release.apks
+
+
+
+
+react-native start --port 8084 --reset-cache
+react-native run-Android --port 8084
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "name": "AppPlay",
+  "version": "0.0.1",
+  "private": true,
+  "keywords": [],
+  "author": "Juan Carrizalez <sitgem@gmail.com>",
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "startoriginal": "react-native start",
+    "start-test": "rm -r android/build; rm -r android/app/src/release/res; rm -r android/app/build/intermediates; watchman watch-del-all; rm -rf $TMPDIR/react-native-packager-cache-*; rm -rf $TMPDIR/metro-bundler-cache-*;npm start -- --reset-cache",
+    "start": "watchman watch-del-all;rm -rf $TMPDIR/react-native-packager-cache-*;rm -rf $TMPDIR/metro-bundler-cache-*;react-native start --reset-cache;",
+    "back": "adb shell input keyevent 82",
+    "certificado-firebase": "cd android && ./gradlew signingReport && cd ..",
+    "clean": "cd android && ./gradlew clean && ./gradlew cleanBuildCache && cd ..",
+    "key": "echo 'PW:appplay123, CN=Juan Carrizalez, OU=VOD, O=Qubit, L=Buenos Aires, ST=CABA, C=AR'; keytool -genkey -v -keystore AppPlay.keystore -alias AppPlay -keyalg RSA -keysize 2048 -validity 10000; mv AppPlay.keystore android/app/;",
+    "build-debug": "mkdir -p android/app/build/intermediates/res/merged/release/;react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew assembleDebug && cd ..",
+    "build-release-error": "mkdir -p android/app/build/intermediates/res/merged/release/;react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && rm -rf android/app/src/main/res/drawable-* && rm -rf android/app/src/main/res/raw/* && cd android && ./gradlew assembleRelease && cd ..",
+    "build-release": "                                                                   react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew assembleRelease && cd ..",
+    "uninstall": "cd android && ./gradlew uninstallAll && cd ..",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.16.1",
+    "@react-native-community/slider": "^4.2.0",
+    "@react-navigation/drawer": "^6.3.1",
+    "@react-navigation/native": "^6.0.8",
+    "@react-navigation/native-stack": "^6.5.0",
+    "@react-navigation/stack": "^6.1.1",
+    "axios": "^0.26.0",
+    "prop-types": "^15.8.1",
+    "react": "17.0.2",
+    "react-native": "0.67.3",
+    "react-native-dropdown-picker": "^5.3.0",
+    "react-native-gesture-handler": "^2.3.0",
+    "react-native-google-cast": "^4.2.0",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-orientation-locker": "^1.4.0",
+    "react-native-pager-view": "^5.4.11",
+    "react-native-raw-bottom-sheet": "^2.2.0",
+    "react-native-reanimated": "^2.4.1",
+    "react-native-safe-area-context": "^4.1.0",
+    "react-native-screens": "^3.13.0",
+    "react-native-tag-group": "^1.0.2",
+    "react-native-toast-notifications": "^3.2.3",
+    "react-native-vector-icons": "^9.1.0",
+    "react-native-video": "^5.2.0",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/runtime": "^7.17.2",
+    "@react-native-community/eslint-config": "^3.0.1",
+    "babel-jest": "^27.5.1",
+    "babel-plugin-root-import": "^6.6.0",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.2",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^27.5.1",
+    "metro-react-native-babel-preset": "^0.69.0",
+    "prettier": "^2.5.1",
+    "react-test-renderer": "17.0.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
+
+
+   "react-native": "0.68.2",

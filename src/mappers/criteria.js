@@ -1,4 +1,4 @@
-import {logger} from 'services'
+import {logger} from 'lib'
 import mapperContent from '~/mappers/content'
 
 export default (criteria, response) =>

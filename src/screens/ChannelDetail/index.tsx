@@ -2,56 +2,56 @@ import React, {useRef, useState, useEffect, useCallback} from 'react'
 import PropTypes from 'prop-types'
 import View from './View'
 import styled from '~/components'
-import {BLOCK_ID} from '~/endpoints'
-import {navigator, crtl, nexPage} from 'services'
+import {nexPage} from 'lib'
 
+import ServiceBlock from 'services/Block'
+import ServiceContent from 'services/Content'
 
 function ChannelDetail({route, theme})
 {
+  const [serviceBlock] = useState(new ServiceBlock())
+
+  const [serviceContent] = useState(new ServiceContent())
+
   const [loading, setLoading] = useState(false)
 
-  const [load, setMounted] = useState(crtl.onMounted(`channel`))
-  
   const [params] = useState(route.params??{elements:[]})
 
   const [data, setData] = useState({
     ...params, 
     elements: params.elements.map(item => item.uuid)
   })
-
-  const onContentInfo = useCallback(function(item: object){
-
-    if(load.status()) return
-    load.start()
-
-    if(load.isMounted()) navigator('ContentInfo', item.uuid)
-    
-    load.end()
-
+  
+  useEffect(() => {
+    serviceBlock.mounted()
+    serviceContent.mounted()
+    return () => {
+      serviceBlock.unmounted()
+      serviceContent.unmounted()
+    }
   },[])
+
+  const onContentInfo = useCallback((item: object) => serviceContent.info(item.uuid) )
 
   const onBlockId = useCallback(async function(loading, data){
 
     let page = nexPage(data.metadata)
 
-    if(loading || !page) return
+    if(loading || !page || !serviceBlock.isMounted()) return
 
     setLoading(true)
 
-    let response = await BLOCK_ID(data.id, {page})
+    let response = await serviceBlock.find(data.id, {page})
 
     setLoading(false)
 
-    if(response) setData({
-      ...data,
-      metadata: response.metadata, 
-      elements: data.elements.concat(response.elements)
-    })
+    if(!response || !serviceBlock.isMounted()) return
 
-  },[])
+    data.metadata = response.metadata
+    data.elements = data.elements.concat(response.elements)
 
-  useEffect(function(){
-    return () => setMounted(load.onUnMounted())
+    setData(data)
+
   },[])
 
   return (

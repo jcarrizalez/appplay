@@ -2,6 +2,7 @@ export default {
 	theme:null,
 	event_player:null,
 	search:[],
+	banners_contents:[],
 	screen_content_detail:0,
 	screen_content_search:0,
 	screen_search:0,

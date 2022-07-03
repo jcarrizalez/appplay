@@ -1,24 +1,18 @@
 import React, {useRef, useEffect, useState, useCallback} from 'react'
 import Icon from '~/components/Icon'
-import {redux, toast, contents, logger} from 'services'
+import {redux, toast, contents, logger} from 'lib'
 import {Sheet} from './styles'
 import View from './View'
 import fn from '../ContentInfo/functions'
 import {withTheme} from 'styled-components/native'
-/*
+
 import GoogleCast, { 
   CastButton, useCastState, useDevices, 
   useCastChannel, useRemoteMediaClient, 
   useMediaStatus, useStreamPosition,
   CastContext, useCastSession
 } from 'react-native-google-cast'
-*/
-function Client({theme})
-{
-  return null
-}
 
-/*
 function Client({theme})
 {
   const [client, setClient] = useState(useRemoteMediaClient())
@@ -26,6 +20,10 @@ function Client({theme})
   const onShowCastDialog = useCallback(async () => await CastContext.showCastDialog(),[])
 
   const sessionManager = GoogleCast.getSessionManager()
+
+  const [load, setLoad] = useState(false)
+
+  const [data, setData] = useState(null)
 
   const textTrackStyle = {
     foregroundColor: '#FF0000',
@@ -36,47 +34,39 @@ function Client({theme})
   //const discoveryManager = GoogleCast.getDiscoveryManager()
 
   async function onClient(type, params = {}){
-
-    if(client === null) return
-
     try {
-
       switch(type){
         case `load`:
-          return await client.loadMedia(params)
-
+          setData(params)
+          return client ? await client.loadMedia(params) : null
         case `subtitle`:
-          return await client.setActiveTrackIds(params)
-
+          return client ? await client.setActiveTrackIds(params) : null
         case `subtitle-color`:
-          return await client.setTextTrackStyle(textTrackStyle)
-
+          return client ? await client.setTextTrackStyle(textTrackStyle) : null
         case `muted`:
-          return await client.setStreamMuted(params)
-
+          return client ? await client.setStreamMuted(params) : null
         case `play`:
-          return await client.play()
-        
+          return client ? await client.play() : null
         case `pause`:
-          return await client.pause()
-        
+          return client ? await client.pause() : null
         case `stop`:
-          return await client.stop()
-        
+          setData(null)
+          return client ? await client.stop() : null
         case `set-position`:
-          return await client.seek({
+          return client ? await client.seek({
             position:params,
             //infinite:false,
-          })
-        
+          }) : null
         case `get-position`:
-          return await client.getStreamPosition()
-        
+          return null
+          return client ? await client.getStreamPosition() : null
         case `volume`:
-          return await client.setStreamVolume(params)
+          return client ? await client.setStreamVolume(params) : null
+        default:
+          return null
       }
     } catch (error) {
-      return logger.error('mappers/cast')
+      return logger.error('onClient/cast')
     }
   }
 
@@ -92,6 +82,16 @@ function Client({theme})
     }
   }
   
+  useEffect(() => {
+    
+    setClient(client)
+    if(client && data){
+      
+      onClient('load', data)
+    }
+
+  },[client, data])
+
   useEffect(() => {
     
     const listener = sessionManager.onSessionStarted((session) => {
@@ -123,7 +123,7 @@ function Control({data, onClient, device, duration, currentPosition, onSessionMa
 
   const [tmpPosition, setTmpPosition] = useState(0)
 
-  const [pause, setPause] = useState(false)
+  const [pause, setPause] = useState(null)
   
   const onStop = useCallback( () => {
     onClient(`stop`)
@@ -131,8 +131,14 @@ function Control({data, onClient, device, duration, currentPosition, onSessionMa
 
   const onPlay = useCallback( (value) => {
 
-    onClient(pause? `pause` : `play`)
-    setPause(!pause)
+    if(pause === null){
+      onClient(`pause`)
+      setPause(false)
+    }
+    else {
+      onClient(pause? `pause` : `play`)
+      setPause(!pause)
+    }
   },[pause])
 
   const onSlidingComplete = useCallback( (value) => {
@@ -227,15 +233,14 @@ function GoogleCastView({theme, onSession, onClient, onShowCastDialog})
 
       let response = redux.get('google_cast')
 
-      if(response.uuid){
+      if(response.iscast){
 
         setData(response)
 
-        setTimeout(() => onClient(`load`, response.loadMedia), 1000)
+        onClient(`load`, response.loadMedia)
       }
-       ref.current.open()
+      ref.current.open()
     })
-    //ref.current.open()
     return () => unsubscribe()
   },[])
 
@@ -288,7 +293,6 @@ function GoogleCastView({theme, onSession, onClient, onShowCastDialog})
     </Sheet.Container>
   )
 }
-*/
 
 export default withTheme(Client)
 

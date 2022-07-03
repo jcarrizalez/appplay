@@ -1,3 +1,4 @@
+#import <GoogleCast/GoogleCast.h> // <- add this juan: react-native-google-cast@4.2.4
 #import "Orientation.h" // <- add this juan: react-native-orientation-locker@1.5.0
 #import "AppDelegate.h"
 
@@ -41,6 +42,14 @@
   _bridgeAdapter = [[RCTSurfacePresenterBridgeAdapter alloc] initWithBridge:bridge contextContainer:_contextContainer];
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
+
+  //INI <- add this juan: react-native-google-cast@4.2.4
+  NSString *receiverAppID = kGCKDefaultMediaReceiverApplicationID; // or @"ABCD1234"
+  GCKDiscoveryCriteria *criteria = [[GCKDiscoveryCriteria alloc] initWithApplicationID:receiverAppID];
+  GCKCastOptions* options = [[GCKCastOptions alloc] initWithDiscoveryCriteria:criteria];
+  options.startDiscoveryAfterFirstTapOnCastButton = false;
+  [GCKCastContext setSharedInstanceWithOptions:options];
+  //FIN <- add this juan: react-native-google-cast@4.2.4
 
   UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"AppPlay", nil);
 
@@ -106,9 +115,10 @@
 
 #endif
 
-#//INI <- add this juan: react-native-orientation-locker@1.5.0
+//INI <- add this juan: react-native-orientation-locker@1.5.0
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   return [Orientation getOrientation];
 }
-#//FIN <- add this juan: react-native-orientation-locker@1.5.0
+//FIN <- add this juan: react-native-orientation-locker@1.5.0
+
 @end

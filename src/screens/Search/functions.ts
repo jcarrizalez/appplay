@@ -1,4 +1,4 @@
-import {redux, navigator} from 'services'
+import {redux, navigator} from 'lib'
 import {SEARCH, CONTENT_SEARCH} from '~/endpoints'
 
 import {configNavigatation} from 'config'

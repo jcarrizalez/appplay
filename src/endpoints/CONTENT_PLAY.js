@@ -1,10 +1,10 @@
-import {api, redux, navigator, toast} from 'services'
+import {api, redux, navigator, toast} from 'lib'
 import mapperPlay from '~/mappers/play'
 import mapperCast from '~/mappers/cast'
 
-export default async (uuid, title, iscast = false) =>
+export default async (uuid, title, isCast = false) =>
 {
-   const loading = iscast? false : true
+   const loading = isCast? false : true
 
    if(!uuid || !title) return
 
@@ -21,7 +21,8 @@ export default async (uuid, title, iscast = false) =>
    
    if(!response) return toast(`${title} no dosponible`)
 
-   return iscast
-      ? mapperCast(response)
-      : mapperPlay(response)
+   response = isCast ? mapperCast(response) : mapperPlay(response)
+   response.isCast = isCast
+
+   return response
 }

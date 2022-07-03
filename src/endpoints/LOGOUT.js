@@ -1,4 +1,4 @@
-import {api, toast, redux, storage} from 'services'
+import {api, toast, redux, storage} from 'lib'
 
 export default async () =>
 {

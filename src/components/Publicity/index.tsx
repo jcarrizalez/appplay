@@ -13,7 +13,7 @@ import {
   ScrollView
 } from "react-native"
 import {withTheme} from 'styled-components/native'
-import {redux, contents, navigator} from 'services'
+import {redux, contents, navigator} from 'lib'
 import {Banner1, Banner2, Banner3, Banner4} from './styles'
 
 

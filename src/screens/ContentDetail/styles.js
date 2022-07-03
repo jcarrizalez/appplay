@@ -292,7 +292,7 @@ export const Buttom = {
   `,
   Ver: styled(Buttoms.Ver).attrs(p=>({
     row: true,
-    iscast: p.castState
+    iscast: p.isCast
   }))`
     width: 100px;
     margin: 10px 0px 5px 10px;

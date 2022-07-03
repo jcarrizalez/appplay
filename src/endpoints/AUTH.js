@@ -1,4 +1,4 @@
-import {api, redux, logger} from 'services'
+import {api, redux, logger} from 'lib'
 import config from 'config'
 
 const {company} = config()

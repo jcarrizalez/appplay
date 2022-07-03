@@ -7,7 +7,7 @@ import {Home} from './styles'
 
 const {Container, ScrollView, Blocks, TopBar, Gradient/*, GradientBlocks*/} = Home
 
-const View = ({animations:{headerOpacity, actionsOpacity, nativeEvent, HEADER_MAX_HEIGHT, contentContainerStyle, headerTranslateY, titleTranslateY, imageTranslateY}, data, theme, onScroll}) => (
+const View = ({serviceContent, serviceBlock, serviceUser, animations:{headerOpacity, actionsOpacity, nativeEvent, HEADER_MAX_HEIGHT, contentContainerStyle, headerTranslateY, titleTranslateY, imageTranslateY}, data, theme, onScroll}) => (
   <Container>
     <ScrollView
         contentContainerStyle={contentContainerStyle}
@@ -15,10 +15,12 @@ const View = ({animations:{headerOpacity, actionsOpacity, nativeEvent, HEADER_MA
       >
       <Blocks>
         {/*<GradientBlocks />*/}
-        {data?.elements.map((block, key) => <Block key={key} item={block} position={key}/> )}
+        {data?.elements.map((block, key) => <Block key={key} item={block} position={key} serviceContent={serviceContent} serviceBlock={serviceBlock}/> )}
       </Blocks>
 
       <Banner 
+        serviceUser={serviceUser} 
+        serviceContent={serviceContent} 
         height={HEADER_MAX_HEIGHT} 
         headerTranslateY={headerTranslateY} 
         imageTranslateY={imageTranslateY}

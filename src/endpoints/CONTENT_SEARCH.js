@@ -1,4 +1,4 @@
-import {api, toast, onContents} from 'services'
+import {api, toast, onContents} from 'lib'
 import mapperCriteria from '~/mappers/criteria'
 
 // Tambien es usado para NOVEDADES
@@ -29,7 +29,13 @@ export default async (criteria, params) =>
 	response = onContents(mapperCriteria(criteria, response))
 	
 	if(as === 'stars') response.title = `Peliculas con ${name}`
-	else if(criteria === 'novedades') response.novedades = true
+	else if(criteria === 'novedades'){
+		
+		response.novedades = true
 
+		if(page === 1){
+			console.log(response)
+		}
+	}
 	return response
 }

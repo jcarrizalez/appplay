@@ -63,7 +63,19 @@ export const Banner = {
     right: 0;
     resizeMode: cover;
     height: ${p => p.height}px;
+    display: flex;
+    justifyContent: center;
+    alignItems: center;
   `,
+  Logo: styled.Image.attrs({
+    resizeMode: 'contain',
+  })`
+    align-self: center;
+    height: 150px;
+    width: 150px;
+    margin-bottom: 10%;
+  `,
+
   Image: styled(Animated.Image).attrs(p => ({
     resizeMode: 'contain',
     source:{uri:p.source},

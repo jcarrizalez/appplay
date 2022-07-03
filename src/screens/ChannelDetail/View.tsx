@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Channel} from './styles'
-import {contents, onUnique} from 'services'
+import {contents, onUnique} from 'lib'
 import {Header, Publicity} from '~/components'
 
 const View = ({loading, data, onBlockId, onContentInfo, height = 250}) => (

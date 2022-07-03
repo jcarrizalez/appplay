@@ -1,4 +1,4 @@
-import {navigator} from 'services'
+import {navigator} from 'lib'
 import {CONTENT_SEARCH, MY_LIST, CONTINUE_WATCHING, LOGOUT} from '~/endpoints'
 
 import config from 'config'

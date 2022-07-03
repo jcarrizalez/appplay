@@ -1,4 +1,4 @@
-import {logger} from 'services' 
+import {logger} from 'lib' 
 
 export default (data) => {
 

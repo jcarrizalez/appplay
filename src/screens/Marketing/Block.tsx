@@ -1,20 +1,68 @@
 import React,{useState, useEffect, useCallback} from 'react'
 import PropTypes from 'prop-types'
-import {redux, contents, onUnique} from 'services'
+import {redux, onUnique, nexPage} from 'lib'
 import styled, {Block, Publicity} from '~/components'
 import {Blocks} from './styles'
 import fn from './functions'
 
-function MarketingBlock({position, item})
+function MarketingBlock({serviceContent, serviceBlock, position, item})
 {
   const [load, setLoad ] = useState(true)
 
   const [data, setData ] = useState(item)
+
   const [slug] = useState(item.slug)
 
-  const onEventRedux = useCallback( (type, event) => fn.onEventRedux(type, event, data, setData),
-  [data])
-  
+  const onEventRedux = useCallback( (type, event) => {
+
+    if(type === data.slug) return setData({...data,...event, date:new Date()})
+
+    if(type === `watchlater`){
+
+      let {uuid, watchlater} = event
+        let {slug, elements} = data
+
+        return setData({
+          ...data,
+          elements: watchlater
+            ? [uuid].concat(elements)
+            : elements?.filter( item => item !== uuid)
+        })
+    }
+
+  },[data])
+
+  const onBlockId = useCallback( async({is_watching, is_channel, item}) => {
+
+    let page = nexPage(data.metadata)
+
+    if(!load || !page || !serviceBlock.isMounted()) return
+
+    setLoad(false)
+
+    let response = await serviceBlock.findById(data.id, {page})
+
+    if(!response || !serviceBlock.isMounted()) return
+
+    setLoad(true)
+
+    setData({
+      ...data,
+      metadata: response.metadata, 
+      elements: data.elements.concat(response.elements)
+    })
+
+  },[data])
+
+  const onContentInfo = useCallback( ({is_watching, is_channel, item}) => {
+
+    if(is_channel) serviceContent.navigator('ChannelDetail', item)
+    else if(is_watching) serviceContent.navigator('ContentDetail', item)
+    else serviceContent.info(item.uuid)
+  })
+
+  const onPlay = useCallback( ({item}) => serviceContent.navigator('ContentDetail', {...item, is_player: true}))
+
   useEffect(() =>
   {
     let mi_lista_mix = 'mi_lista_mix'
@@ -38,7 +86,7 @@ function MarketingBlock({position, item})
         })
       : null
 
-    return () => use? unsubscribe() : {}
+    return () => use ? unsubscribe() : {}
   },
   [data])
 
@@ -46,12 +94,13 @@ function MarketingBlock({position, item})
     loading:!load,
     item:{
       ...data,
-      elements: contents.get(onUnique(data.elements))
+      elements: serviceContent.contents.get(onUnique(data.elements))
     },
-    onPress: fn.onContentInfo,
-    onLongPress: fn.onPlay,
-    onScroll: async () => fn.onBlockId(load, data, setLoad, setData)
+    onPress: onContentInfo,
+    onLongPress: onPlay,
+    onScroll: onBlockId
   }
+
   switch(item.type){
     case 'carousel':
       return (

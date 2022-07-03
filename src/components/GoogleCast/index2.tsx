@@ -1,8 +1,7 @@
-import React, {useRef, useEffect, useState} from 'react'
 import RBSheet from "react-native-raw-bottom-sheet";
 import Icon from '~/components/Icon'
 import Buttom from '~/components/Buttom'
-import { redux } from '~/services'
+import { redux } from '~/lib'
 import { CONTENT_DETAIL } from '~/endpoints'
 import {withTheme} from 'styled-components/native'
 

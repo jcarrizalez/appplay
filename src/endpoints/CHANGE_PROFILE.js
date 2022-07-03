@@ -1,5 +1,5 @@
-import {api, redux, storage} from '~/services'
 import mapperInfoUser from '~/mappers/info_user'
+import {redux, storage, api} from 'lib'
 
 const URL = '/profiles/change'
 

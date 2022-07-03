@@ -1,7 +1,7 @@
 import React,{ useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types'
 import styled from '~/components'
-import {crtl, navigator, nexPage} from 'services'
+import {crtl, navigator, nexPage} from 'lib'
 import View from './View'
 import {CONTENT_SEARCH, MY_LIST, CONTINUE_WATCHING} from '~/endpoints'
 

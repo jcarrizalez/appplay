@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Header, Footer} from '~/components'
-import {contents} from 'services'
+import {contents} from 'lib'
 import {CSearch, Data, Card} from './styles'
 
 const ViewContentSearch = ({data:{title, elements, metadata:{total}}, onContentInfo, onEndReached}) => (

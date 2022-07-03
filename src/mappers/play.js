@@ -1,4 +1,4 @@
-import {logger, audios} from 'services'
+import {logger, audios} from 'lib'
 import mapperContent from '~/mappers/content'
 import {TextTrackType} from 'react-native-video'
 

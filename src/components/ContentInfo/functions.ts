@@ -1,4 +1,4 @@
-import {navigator} from 'services'
+import {redux, navigator} from 'lib'
 import {MY_LIST, CONTENT_PLAY} from '~/endpoints'
 
 var state_load, response
@@ -28,19 +28,26 @@ async function onWatchlater(uuid: string, watchlater: bool, setCheck: func, setL
 	load.end()
 }
 
-async function onPlay(uuid: string, title: string, onClose: func)
+async function onPlay(iscast: string, uuid: string, title: string, onClose: func)
 {
 	if(load.status()) return
 	load.start()
 	
 	onClose()
 
-	response = await CONTENT_PLAY(uuid, title)
+	response = await CONTENT_PLAY(uuid, title, iscast)
 
-	if(response) navigator('Player', response)
+	if(response){
+      redux.push('google_cast', response)
+    }
+    else{
+      navigator('Player', response)
+    }
+
 	load.end()
-
 }
+
+
 
 function onContentDetail(data: object, onClose: func)
 {

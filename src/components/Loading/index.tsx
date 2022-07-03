@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import {Container, Indicator} from './styles'
-import {redux} from '~/services'
+import {redux} from '~/lib'
 import {withTheme} from 'styled-components/native'
 import Pulse from 'react-native-pulse'
 

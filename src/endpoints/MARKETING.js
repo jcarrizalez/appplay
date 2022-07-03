@@ -1,4 +1,4 @@
-import {api, contents, onContents} from 'services'
+import {api, contents, onContents} from 'lib'
 import mapperCarouselBlock from '~/mappers/carousel_block'
 import mapperGenreBlock from '~/mappers/genre_block'
 import mapperChannelBlock from '~/mappers/channel_block'

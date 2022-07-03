@@ -1,4 +1,4 @@
-import {api, redux, onContents} from '~/services'
+import {api, redux, onContents} from 'lib'
 import mapperCriteria from '~/mappers/criteria'
 import mapperPerson from '~/mappers/person'
 

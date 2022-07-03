@@ -1,4 +1,4 @@
-import {api, redux, toast, contents, onContents} from 'services'
+import {api, redux, toast, contents, onContents} from 'lib'
 import mapperContent from '~/mappers/content'
 import mapperCarouselBlock from '~/mappers/carousel_block'
 

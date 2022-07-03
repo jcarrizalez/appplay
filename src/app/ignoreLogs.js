@@ -4,5 +4,6 @@ export default [
   //'Task orphaned for request',
   //'Sending...',
   'Require cycle: node_modules/react-native-google-cast/src/index.ts -> node_modules/react-native-google-cast/src/api/CastContext.ts -> node_modules/react-native-google-cast/src/api/SessionManager.ts -> node_modules/react-native-google-cast/src/api/CastSession.ts -> node_modules/react-native-google-cast/src/api/RemoteMediaClient.ts -> node_modules/react-native-google-cast/src/index.ts',
-  'new NativeEventEmitter()',
+  'new NativeEventEmitter',
+  'ViewPropTypes'
 ]

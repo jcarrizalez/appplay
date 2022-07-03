@@ -1,4 +1,4 @@
-import {api, toast, redux} from 'services'
+import {api, toast, redux} from 'lib'
 import mapperInfoUser from '~/mappers/info_user'
 
 export default async hash => 

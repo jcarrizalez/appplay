@@ -1,5 +1,5 @@
-import redux from 'services/redux'
-import storage from 'services/storage'
+import redux from 'lib/redux'
+import storage from 'lib/storage'
 import config from 'config'
 const {company} = config()
 
@@ -46,6 +46,13 @@ async function onLoad<Type>(setLoad: func, setIntro: func)
     response = await MARKETING(company.marketing, {page:1})
     if(!response) return setLoad(false)
     redux.push('marketing', response)
+
+    response = await CONTENT_SEARCH('novedades',{count:60})
+
+    if(response){
+        redux.push('novedades', response)
+        redux.push('banners_contents', response.elements)
+    }
 
     setLoad(true)
      

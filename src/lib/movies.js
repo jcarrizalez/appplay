@@ -109,22 +109,22 @@ const contents = [
   {
     id: 22,
     title: 'Jaws',
-    image: 'https://twimglevel3.cdnar.net/contents/095d997a-52c6-480e-ae4c-75a9ea5ead31_TheKillingFields1984/thumbnails/tv.jpg',
+    image: 'https://twimglevel3.cdnar.net/contents/159092b9-a58c-4b76-a705-e7543421a947_CorpusChristi2019/thumbnails/tv.jpg',
   },
   {
     id: 23,
     title: 'Jaws',
-    image: 'https://twimglevel3.cdnar.net/contents/c3ba26e0-1b85-4015-bb95-60a1745787b0_DueloAlSol/thumbnails/tv.jpg',
+    image: 'https://twimglevel3.cdnar.net/contents/10550401-c7c2-4bb3-be8d-afe4e5d3aa79_DeepwaterHorizon2016/thumbnails/tv.jpg',
   },
   {
     id: 24,
-    title: 'Jaws',
-    image: 'https://twimglevel3.cdnar.net/contents/0c0c261d-c885-4e43-90d8-5a13252234dd_Help1965/thumbnails/tv.jpg',
+    title: 'Stranger Things',
+    image: 'https://twimglevel3.cdnar.net/contents/14de9c73-5823-4a34-b60c-db7bde1ea613_Braven2018/thumbnails/tv.jpg',
   },
   {
     id: 25,
-    title: 'Stranger Things',
-    image: 'https://static.wikia.nocookie.net/marveldatabase/images/a/ae/Venom_%28film%29_poster_009.jpg',
+    title: 'Jaws',
+    image: 'https://twimglevel3.cdnar.net/contents/150e3599-2b53-4529-a473-cb15e27332a1_NothingButTheTruth2008/thumbnails/tv.jpg',
   }
 ];
 

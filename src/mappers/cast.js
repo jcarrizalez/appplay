@@ -1,10 +1,10 @@
-import {logger, audios} from 'services'
+import {logger, audios} from 'lib'
 import mapperContent from '~/mappers/content'
 import {TextTrackType} from 'react-native-video'
 
 export default (response) =>
 {
-	try {
+	
 		var {cdn, 
 			playback:{
 				id,
@@ -122,6 +122,7 @@ export default (response) =>
 			portrait, 
 			landscape,
 			progress,
+			/*
 			loadMedia2:{
 	        	autoplay: true,
 	        	preloadTime: 8.0,
@@ -131,6 +132,7 @@ export default (response) =>
 	            
 	        },
 	      },
+	      */
 	      loadMedia:{
 	       	autoplay: true,
 	       	preloadTime: 8.0,
@@ -156,7 +158,8 @@ export default (response) =>
 	        	startTime: progress??0, // seconds
 	        	//startTime: 1600, // seconds
 	      },
-	      loadMediaBase:{
+			/*
+	      loadMedia:{
 	        mediaInfo: {
 	          contentUrl:
 	            'https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4',
@@ -178,11 +181,17 @@ export default (response) =>
 	        },
 	        startTime: 10, // seconds
 	      },
+	      */
 		}
+		return data
+		console.log(data)
+		/*
+	try {
 		return data
 	} catch (error) {
 		return logger.error('mappers/cast')
 	}
+	*/
 }
 
 /*

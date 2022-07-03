@@ -3,11 +3,14 @@ import PropTypes from 'prop-types'
 import {Header} from '~/components'
 import {Banner} from './styles'
 
-const ViewBanner = ({watchlater, genres, info, movies, height, headerTranslateY, imageTranslateY, actionsOpacity, onContentInfo, onWatchlater, onContentSearchGenres, id, setId}) => (
+const ViewBanner = ({content:{metadata}, theme, genres, height, headerTranslateY, imageTranslateY, actionsOpacity, onContentInfo, onWatchlater, onContentSearch, onChangeContent}) => (
   <Banner.Container height={height} style={headerTranslateY}>
     <Banner.Header height={height} style={imageTranslateY}>
-      <Banner.Feedback onPress={()=> setId(Math.floor(Math.random() * (23 - 0 + 1)) + 0)}>
-        <Banner.Image height={height} source={movies.contents[id].image}/>
+      <Banner.Feedback onPress={onChangeContent}>
+        {metadata
+          ? <Banner.Image height={height} source={metadata.portrait}/>
+          : <Banner.Logo source={theme.logo} />
+        }
       </Banner.Feedback>
       <Banner.GradientTop />
     </Banner.Header>
@@ -20,13 +23,18 @@ const ViewBanner = ({watchlater, genres, info, movies, height, headerTranslateY,
               ? <Banner.Point />
               : null
             }
-            <Banner.GenreTouch onPress={() => onContentSearchGenres(item)}>
+            <Banner.GenreTouch onPress={() => onContentSearch('genres', item)}>
               <Banner.Genre>{item.name}</Banner.Genre>
             </Banner.GenreTouch>
           </React.Fragment>
         ))}
-        <Banner.BtMyList check={watchlater} onPress={onWatchlater} />
-        <Banner.BtInfo onPress={()=> onContentInfo({item:info})}/>
+        {metadata
+          ? <>
+              <Banner.BtMyList check={metadata.watchlater} onPress={onWatchlater} />
+              <Banner.BtInfo onPress={onContentInfo}/>
+            </>
+          :null
+        }
       </Banner.Actions>
     </Banner.GradientFooter>
   </Banner.Container>

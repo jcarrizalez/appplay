@@ -1,4 +1,4 @@
-import {api, toast, onContents} from 'services'
+import {api, toast, onContents} from 'lib'
 import mapperContent from '~/mappers/content'
 
 export default async (uuid, title) =>

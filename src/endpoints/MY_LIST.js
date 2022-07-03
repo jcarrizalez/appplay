@@ -1,4 +1,4 @@
-import {api, redux, toast, contents, onContents} from 'services'
+import {api, redux, toast, contents, onContents} from 'lib'
 import mapperContent from '~/mappers/content'
 import mapperCarouselBlock from '~/mappers/carousel_block'
 
@@ -24,7 +24,7 @@ export default async params =>
 	//parche hasta revisar en la api que pasa
 	let data = []
 	response.data.elements.forEach(item => {
-		item.status.watchlater = true
+		//item.status.watchlater = true
 		data.push(item)
 	})
 	response.data.elements = data
@@ -54,7 +54,7 @@ async function postUuid(uuid, params)
 {
 	const loading = false
 
-	let message = params?.watchlater? 'eliminando de' : 'agregando a'
+	let message = params?.watchlater? 'agregando a' : 'eliminando de'
 
 	let id_toast = toast(`${message} mi lista...`, {update:true})
 

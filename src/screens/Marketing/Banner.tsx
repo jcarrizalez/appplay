@@ -1,28 +1,9 @@
-import React,{useState, useCallback} from 'react'
+import React,{useState, useEffect, useCallback} from 'react'
 import PropTypes from 'prop-types'
 import styled from '~/components'
 import ViewBanner from './ViewBanner'
-import fn from './functions'
+import {redux, onUnique} from 'lib'
 
-import movies from '~/services/movies'
-
-const info = {
-   "anio":"2009",
-   "description":"En el año 2019 el mundo es dominado por los vampiros. Pero cuando la reserva mundial de sangre humana empieza a acabarse, su futuro pronto correrá peligro. Sólo un científico se atreverá a hallar una solución.",
-   "duration":"1h38 min",
-   "fanarts":[
-      "https://twimglevel3.cdnar.net/contents/92e39f50-ceda-4142-9111-a1991c04103c_DayBreakers/thumbnails/fanart_1.jpg",
-      "https://twimglevel3.cdnar.net/contents/92e39f50-ceda-4142-9111-a1991c04103c_DayBreakers/thumbnails/fanart_2.jpg",
-      "https://twimglevel3.cdnar.net/contents/92e39f50-ceda-4142-9111-a1991c04103c_DayBreakers/thumbnails/fanart_3.jpg",
-      "https://twimglevel3.cdnar.net/contents/92e39f50-ceda-4142-9111-a1991c04103c_DayBreakers/thumbnails/fanart_4.jpg"
-   ],
-   "landscape":"https://twimglevel3.cdnar.net/contents/92e39f50-ceda-4142-9111-a1991c04103c_DayBreakers/thumbnails/large_doble.jpg",
-   "portrait":"https://twimglevel3.cdnar.net/contents/92e39f50-ceda-4142-9111-a1991c04103c_DayBreakers/thumbnails/tv.jpg",
-   "rating":"+16",
-   "title":"Vampiros del día",
-   "uuid":"92e39f50-ceda-4142-9111-a1991c04103c_DayBreakers",
-   "watchlater":false
-}
 const genres = [
   {slug:'drama', name:'Drama'},
   {slug:'accion', name:'Accion'},
@@ -30,30 +11,73 @@ const genres = [
   {slug:'cine-nacional', name:'Cine nacional'},
 ]
 
-function BannerMarketing({height, headerTranslateY, imageTranslateY, actionsOpacity})
+function BannerMarketing({serviceContent, serviceUser, theme, height, headerTranslateY, imageTranslateY, actionsOpacity})
 {
-  const [key, setKey ] = useState(24)
+  const [banners] = useState(onUnique(redux.get('banners_contents')).filter((uuid, key) => key < 20))
 
-  const [watchlater, setWatchlater ] = useState(false)
+  const [content, setContent] = useState({
+    currentKey: 0,
+    metadata: serviceContent.infoByBanner(banners[0])
+  })
 
-  const onWatchlater = useCallback( () => fn.onWatchlater(info.uuid, watchlater, setWatchlater),
-  [watchlater])
+  const onContentSearch = useCallback( (type: string, {slug, name}) => serviceContent.search(type, {slug, name}))
+
+  const onChangeContent = useCallback( () => {
+
+    let key = content.currentKey
+
+    key = key < (banners.length -1) ? (key + 1) : 0
+
+    setContent({
+      currentKey: key,
+      metadata: serviceContent.infoByBanner(banners[key])
+    })    
+
+  }, [content, banners])
+
+  const onWatchlater = useCallback( async () => {
+
+    let {uuid, watchlater} = content.metadata
+
+    if(!uuid || !serviceUser.isMounted()) return
+
+    let response = await serviceUser.watchlater(uuid, !watchlater)
+
+    if(!response || !serviceUser.isMounted()) return
+
+    content.metadata.watchlater = response.watchlater
+    
+    setContent({...content, date: new Date()})
+
+  },[content, banners])
+
+  useEffect(() =>
+  {
+    const unsubscribe = redux.subscribe( () =>
+    {
+      if(!redux.is('watchlater')) return
+
+      content.metadata = serviceContent.infoByBanner(banners[content.currentKey])
+      
+      setContent({...content, date: new Date()})
+    })
+    return () => unsubscribe()
+
+  },[content])
 
   return(
     <ViewBanner
-      id={key}
-      setId={setKey}
-      watchlater={watchlater}
-      movies={movies}
-      info={info}
+      onChangeContent={onChangeContent}
+      content={content}
+      theme={theme}
       genres={genres}
       height={height}
       headerTranslateY={headerTranslateY}
       imageTranslateY={imageTranslateY}
       actionsOpacity={actionsOpacity}
-      onContentInfo={fn.onContentInfo}
+      onContentInfo={() => serviceContent.info(content.metadata.uuid)}
       onWatchlater={onWatchlater}
-      onContentSearchGenres={fn.onContentSearchGenres}
+      onContentSearch={onContentSearch}
       />
   )
 }

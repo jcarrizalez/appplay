@@ -264,9 +264,11 @@ export const Buttom = {
     left: 240px;
     zIndex: 1;
   `,
-  Ver: styled(Buttoms.Ver).attrs({
-    row: true
-  })`
+  Ver: styled(Buttoms.Ver).attrs(p =>({
+    row: true,
+    castState: p.castState,
+    castState: `connected`
+  }))`
     position: absolute;
     top: 119px;
     left: 240px;

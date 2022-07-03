@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import {navigator} from 'services'
+import {navigator} from 'lib'
 
 var state_load_header
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import PropTypes from 'prop-types';
-import {redux} from '~/services'
+import {redux} from 'lib'
 import {View, StatusBar, Text } from 'react-native'
 import {withTheme} from 'styled-components/native'
 

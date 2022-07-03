@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Icon from '~/components/Icon';
-//import { CastButton } from 'react-native-google-cast'
+import { CastButton } from 'react-native-google-cast'
 import {withTheme} from 'styled-components/native' //p=>p.theme.color
 
 import config from 'config'
@@ -18,7 +18,7 @@ import {
   Loading,
 } from './styles'
 
-const CastButton = () => null
+//const CastButton = () => null
 
 const Bt = ({theme, children, name, onPress, color, size, style={}, border}) =>
   <Touch onPress={onPress} style={[style,border===undefined?{}:{
@@ -59,6 +59,7 @@ const Cast22 = props => <Bt
   style={[{paddingTop:2}, props.style]}
  />
 
+ const Cast2zzz = () => null
  const Cast = ({theme, children, name, onPress, color, size = 25, style={}, border}) =>
   <Touch onPress={onPress} style={[style]}>
     <ViewCast/>

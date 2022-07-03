@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
 import styled, {DrawerMenu, DrawerPlayer } from '~/components'
-import { redux } from '~/services'
+import {redux} from 'lib'
 
 function Drawer({theme})
 {

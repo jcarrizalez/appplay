@@ -1,6 +1,6 @@
 import React, {useRef, useEffect, useState, useCallback} from 'react'
 import Icon from '~/components/Icon'
-import {redux, toast, contents} from 'services'
+import {redux, toast, contents} from 'lib'
 import Buttoms from './Buttoms'
 import {Sheet} from './styles'
 import fn from './functions'

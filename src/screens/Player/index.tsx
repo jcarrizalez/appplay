@@ -4,7 +4,7 @@ import Orientation from "react-native-orientation-locker"
 import PropTypes from 'prop-types'
 import styled, {MediaPlayer} from '~/components'
 import { Container, Video, Controls, TextTrackType } from './styles'
-import { redux } from '~/services'
+import {redux} from 'lib'
 //import _ from 'lodash'
 
 var s

@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react'
 import { ToastProvider, useToast } from 'react-native-toast-notifications'
-import {redux} from 'services'
+import {redux} from 'lib'
 
 function Toast()
 {

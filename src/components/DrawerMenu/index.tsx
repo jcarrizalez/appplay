@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import PropTypes from 'prop-types'
-import {redux} from 'services'
+import {redux} from 'lib'
 import {Share, Linking} from 'react-native'
 
 import Item from './Items'

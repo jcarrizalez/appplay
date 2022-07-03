@@ -2,13 +2,13 @@ import React,{useRef, useState, useEffect, useCallback} from 'react'
 import PropTypes from 'prop-types'
 import {CSearchBar} from './styles'
 import styled, {Header} from '~/components'
-import fn from './functions'
+import {redux} from 'lib'
 
 const {
   InputContainer, IconLeft, Input, ClearContainer, IconRight, Loading
 } = CSearchBar
 
-function SearchBar({ishome, state})
+function SearchBar({serviceSearch, ishome, state})
 {
   const ref = useRef(null)
 
@@ -27,9 +27,29 @@ function SearchBar({ishome, state})
     ref.current.focus()
   },[])
 
+  const onSearch = useCallback( async function (text){
+
+    if(!serviceSearch.isMounted()) return
+    
+    setLoad(false)
+    
+    redux.push('search', text === ''
+      ? {
+          text,
+          ...state
+        }
+      : await serviceSearch.getAllByText(text)
+    )
+
+    setLoad(true)
+
+  },[state])
+
+
+
   useEffect(() => {
 
-    var time = setTimeout(() => fn.onSearch(text, state, setLoad), 1000)
+    var time = setTimeout(() => onSearch(text), 1000)
 
     return () => clearTimeout(time)
   },[text])

@@ -1,4 +1,4 @@
-import {api, onContents} from 'services'
+import {api, onContents} from 'lib'
 import mapperCriteria from '~/mappers/criteria'
 
 export default async (uuid, params = {}) =>
