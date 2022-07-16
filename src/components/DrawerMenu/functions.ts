@@ -116,10 +116,21 @@ function onProfiles<Type>({profile_id, profiles}, isedit = false)
 	load.end()
 }
 
+async function onTheme<Type>()
+{
+	if(load.status()) return
+	load.start()
+
+	navigator('Theme',{})
+	load.end()
+}
+
+
 export default {
 	onShare,
 	onLogin,
 	onLogout,
+	onTheme,
 	onMyList,
 	onProfiles,
 	onNovedades,

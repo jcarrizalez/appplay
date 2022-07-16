@@ -58,7 +58,6 @@ function Client({theme})
             //infinite:false,
           }) : null
         case `get-position`:
-          return null
           return client ? await client.getStreamPosition() : null
         case `volume`:
           return client ? await client.setStreamVolume(params) : null
@@ -66,7 +65,7 @@ function Client({theme})
           return null
       }
     } catch (error) {
-      return logger.error('onClient/cast')
+      return logger.error('onClient/cast', error)
     }
   }
 
@@ -123,23 +122,19 @@ function Control({data, onClient, device, duration, currentPosition, onSessionMa
 
   const [tmpPosition, setTmpPosition] = useState(0)
 
-  const [pause, setPause] = useState(null)
+  const [pause, setPause] = useState(false)
   
   const onStop = useCallback( () => {
     onClient(`stop`)
   },[])
 
-  const onPlay = useCallback( (value) => {
+  const onPlay = useCallback( (pause) => {
+      pause = !pause
 
-    if(pause === null){
-      onClient(`pause`)
-      setPause(false)
-    }
-    else {
+      setPause(pause)
+      
       onClient(pause? `pause` : `play`)
-      setPause(!pause)
-    }
-  },[pause])
+  },[])
 
   const onSlidingComplete = useCallback( (value) => {
     onClient(`set-position`, value)
@@ -233,7 +228,7 @@ function GoogleCastView({theme, onSession, onClient, onShowCastDialog})
 
       let response = redux.get('google_cast')
 
-      if(response.iscast){
+      if(response.isCast){
 
         setData(response)
 

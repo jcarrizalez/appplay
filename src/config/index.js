@@ -6,6 +6,8 @@ import {logo as logo_} from '../companies/qubit'
 import {intro as intro_} from '../companies/qubit'
 import {colors as colors_} from '../companies/qubit'
 
+const avatar = 'https://st.qubit.tv/assets/public/qubit/production/images/avatar-{{NANE}}.png';
+
 const dark = {
   statusBar:'light',
   white: 'white',
@@ -19,6 +21,7 @@ const dark = {
   darkGrey: '#333',
   lightGrey: 'grey',
   red: 'red',
+  avatar: avatar.replace('{{NANE}}', 'dark')
 }
 
 const light = {
@@ -34,6 +37,7 @@ const light = {
   darkGrey: '#2C2C2C',
   lightGrey: 'grey',
   red: 'red',
+  avatar: avatar.replace('{{NANE}}', 'black')
 }
 
 const qubit = {
@@ -49,6 +53,7 @@ const qubit = {
   darkGrey: '#333',
   lightGrey: 'grey',
   red: 'red',
+  avatar: avatar.replace('{{NANE}}', 'qubit')
 }
 
 

@@ -108,7 +108,7 @@ export const Sheet = {
     border-radius: 2px;
     border-color:  ${p=>p.theme.color.lightGrey};
     border-width:0.5px;
-    background-color: #012554;
+    background-color: ${p=>p.theme.color.backgroundPrimary};
   `,
   HeaderImage: styled.Image.attrs(({data}) => ({
     resizeMode: 'contain',

@@ -141,7 +141,7 @@ export const Cast = {
   })`
     color: ${p=>p.theme.color.white};
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
     max-width:100px;
   `,
 }

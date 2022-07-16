@@ -14,5 +14,7 @@ export default async (id, params) =>
 
 	if(!response) return toast(`ocurrio un error blockid:${id}`)
 
+	if(!response.data) return
+
 	return onContents(mapperCarouselBlock(response))
 }

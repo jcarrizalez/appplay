@@ -24,7 +24,7 @@ function LoadInit({theme, load, onPress})
       </Text>
       <SendButton onPress={onPress} load={load}>
         <Wave>
-          <Text load={load}>volver a intentar</Text>
+          <Text load={load}>{load === null ? null : 'volver a intentar'}</Text>
         </Wave>
       </SendButton>
     </Container>

@@ -4,7 +4,7 @@ import Carousel from './Carousel'
 import {Cast} from './styles'
 import {withTheme} from 'styled-components/native'
 
-function BlockCast({onPress, onScroll, title, data, loading })
+function BlockCast({theme, onPress, onScroll, title, data, loading })
 {
   const renderItem = useCallback( ({item, index}) => 
   (
@@ -13,7 +13,9 @@ function BlockCast({onPress, onScroll, title, data, loading })
       width={110} 
       onPress={() => onPress(item)}
     >
-      <Cast.Image image={item.image} />
+      <Cast.Image 
+        image={item.image ?? theme.color.avatar} 
+      />
       <Cast.Name>{item.name}</Cast.Name>
     </Cast.Item>
   ), [onPress])

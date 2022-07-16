@@ -72,7 +72,7 @@ const ViewContent = ({data, device, duration, pause, onStop, onPlay, onClient, c
         <Crtl.ActionTouch onPress={()=>onClient(`set-position`, (position - 30))}>
           <Crtl.Replay30 />
         </Crtl.ActionTouch>
-        <Crtl.ActionTouch onPress={onPlay} play>
+        <Crtl.ActionTouch onPress={() => onPlay(pause)} play>
           <Crtl.Play pause={pause}/>
         </Crtl.ActionTouch>
         <Crtl.ActionTouch onPress={onStop}>

@@ -32,10 +32,7 @@ export default async (criteria, params) =>
 	else if(criteria === 'novedades'){
 		
 		response.novedades = true
-
-		if(page === 1){
-			console.log(response)
-		}
 	}
+
 	return response
 }

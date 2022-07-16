@@ -80,8 +80,8 @@ export const Avatar = {
     align-items: flex-start;
     justify-content: center;
   `,
-  Image: styled.Image.attrs(({info}) => ({
-    source:{uri:info?.image},
+  Image: styled.Image.attrs(({url}) => ({
+    source:{uri:url},
   }))`
   width: 100.1%;
   height: 100%;

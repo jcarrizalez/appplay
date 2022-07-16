@@ -4,7 +4,6 @@ import mapperCarouselBlock from '~/mappers/carousel_block'
 
 export default async params =>
 {
-	
 	const uuid = params?.uuid
 	
 	if(uuid) return postUuid(uuid, params)

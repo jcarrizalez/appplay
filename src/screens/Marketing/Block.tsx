@@ -17,9 +17,9 @@ function MarketingBlock({serviceContent, serviceBlock, position, item})
 
     if(type === data.slug) return setData({...data,...event, date:new Date()})
 
-    if(type === `watchlater`){
+    if(type === `watchlater` && data.slug === 'mi_lista_mix'){
 
-      let {uuid, watchlater} = event
+        let {uuid, watchlater} = event
         let {slug, elements} = data
 
         return setData({
@@ -42,9 +42,11 @@ function MarketingBlock({serviceContent, serviceBlock, position, item})
 
     let response = await serviceBlock.findById(data.id, {page})
 
-    if(!response || !serviceBlock.isMounted()) return
+    if(!serviceBlock.isMounted()) return
 
     setLoad(true)
+
+    if(!response) return
 
     setData({
       ...data,
@@ -65,24 +67,19 @@ function MarketingBlock({serviceContent, serviceBlock, position, item})
 
   useEffect(() =>
   {
-    let mi_lista_mix = 'mi_lista_mix'
-    let estas_viendo = 'estas_viendo'
-    let watchlater = 'watchlater'
-
     let use = [`estas_viendo`, `mi_lista_mix`].indexOf(data?.slug) !== -1
 
     const unsubscribe = use
       ? redux.subscribe( function(){
 
           let current = redux.current()
-          switch(current){
-              case `watchlater`:
-              case `estas_viendo`:
-              case `mi_lista_mix`:
-                return onEventRedux(current, redux.get(current))
-              default:
-                return
-          }
+
+          if([
+            `watchlater`, 
+            `estas_viendo`, 
+            `mi_lista_mix`
+          ].indexOf(current) !== -1) return onEventRedux(current, redux.get(current))
+
         })
       : null
 

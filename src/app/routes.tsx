@@ -8,6 +8,7 @@ import config,{configNavigatation} from 'config'
 const {colors} = config()
 
 import Login from 'screens/Login'
+import Theme from 'screens/Theme'
 import Player from 'screens/Player'
 import Drawer_ from 'screens/Drawer'
 import Search from 'screens/Search'
@@ -87,6 +88,11 @@ const StackNavigator = () => (
     <Stack.Screen 
       name='Login' 
       component={Login} 
+      options={option}
+      />
+    <Stack.Screen 
+      name='Theme' 
+      component={Theme} 
       options={option}
       />
     <Stack.Screen 

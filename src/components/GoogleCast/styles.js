@@ -132,7 +132,7 @@ export const Crtl = {
     color: ${p=>p.theme.color.lightGrey};
   `,
   Play: styled(Icon).attrs(p=>({
-    name:p.pause? `play-arrow` : `pause`,
+    name:p.pause? `pause` : `play-arrow`,
     size: 100,
   }))`
     color: ${p=>p.theme.color.lightGrey};
