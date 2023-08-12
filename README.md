@@ -6,6 +6,14 @@
 
 
 
+Esto seria la web, pero ese proyecto lo tengo privado porque pertenece a qubit. url(https://beta.qubit.tv/inicio)
+
+![image](https://github.com/jcarrizalez/appplay/assets/8440072/52acbcdf-8030-4b97-9eb8-c8dd098f7edb)
+
+![image](https://github.com/jcarrizalez/appplay/assets/8440072/a7d33bb7-6eaa-48cb-b077-9e2585fc6356)
+
+
+Estos no tendria problema ya que la app es mia y solo los use como marca blanca y esta app no esta en produccion.
 https://github.com/jcarrizalez/appplay/assets/8440072/4ce77d97-d5a1-4bd0-bdf2-e7a3397672d7
 
 
